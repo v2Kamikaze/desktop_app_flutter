@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:windows_app/home_page.dart';
 import 'package:window_manager/window_manager.dart';
 
+import 'colors.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = WindowOptions(
-    minimumSize: const Size(1024, 540),
+    minimumSize: const Size(480, 853),
+    maximumSize: const Size(480, 853),
     center: true,
     titleBarStyle: TitleBarStyle.normal,
+    alwaysOnTop: false,
   );
 
   windowManager.waitUntilReadyToShow(windowOptions, () async {
@@ -25,10 +29,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Windows App',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: const HomePage(),
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          color: backgroundPurple,
+        ),
+      ),
     );
   }
 }
